@@ -1,12 +1,44 @@
-# React + Vite
+# Student Project: E-commerce Food Delivery App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a practical student task designed to be completed step by step. 
+Each new feature will be added as a result of mastering a new learning topic.
 
-Currently, two official plugins are available:
+The final goal of the project is to create an e-commerce application for food delivery.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Repository and Setup
+Repository link: GitHub
 
-## Expanding the ESLint configuration
+## How to Set Up the Project
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Clone the repository:
+git clone https://github.com/OlgaLunevich/react-labs-2025.git
+cd react-labs-2025
+
+### Install dependencies:
+npm install
+
+### Start the application:
+npm run dev
+
+### Run tests (to be added later):
+npm test
+
+## Development Workflow
+
+### Create a new branch:
+git checkout -b homework-(# of the work)
+
+### Make changes and commit them:
+git commit -m "feat(branch-name): description of changes"
+
+### Push the changes:
+git push origin homework-(# of the work)
+
+### Create a Pull Request (PR) and request a review.
+
+## Contribution Guidelines
+
+* Always check this README.md and improve it where necessary.
+* Follow conventional commit message format (feat, fix, docs, etc.).
+* Keep commits clear and descriptive.
+* Ensure your changes do not break the application.
