@@ -14,7 +14,7 @@ function  MenuPage () {
     };
 
     return (
-        <>
+        <>    
             <main>
                 <div className='mainContainer'>
                     <div className='browseInfoContainer'>
