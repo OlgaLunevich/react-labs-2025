@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import ProductCard from "../components/ProductCard.jsx";
-import products from "../assets/productInfo(temporary folder)/products.js";
-import PhoneNumberToolTip from "../toolTips/PhoneNumberToolTip.jsx";
+import ProductCard from "../../components/product-card/ProductCard.jsx";
+import products from "../../assets/productInfo(temporary folder)/products.js";
+import PhoneNumberToolTip from "../../components/phone-number-tooltip/PhoneNumberToolTip.jsx";
 
 
 function  MenuPage () {

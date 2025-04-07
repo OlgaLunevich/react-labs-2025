@@ -43,7 +43,7 @@ header {
                 width: 55px;
                 height: 55px;
                 border-radius: 4px;
-                background-image: url("src/assets/basketImg.svg");
+                background-image: url("../../assets/basketImg.svg");
                 background-repeat: no-repeat;
                 background-position: center center;
                 background-size: 45%;

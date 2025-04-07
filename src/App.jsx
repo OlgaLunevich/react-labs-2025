@@ -1,7 +1,7 @@
 import './App.css'
-import MenuPage from "./pages/MenuPage.jsx";
-import Header from "./components/Header.jsx";
-import Footer from "./components/Footer.jsx";
+import MenuPage from "./pages/menu-page/MenuPage.jsx";
+import Header from "./components/header/Header.jsx";
+import Footer from "./components/footer/Footer.jsx";
 
 function App() {
 

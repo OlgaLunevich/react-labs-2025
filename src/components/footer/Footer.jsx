@@ -5,7 +5,7 @@ function Footer () {
                 <div className='infoBlock'>
                     <div className='infoLogo'>
                         <div className='logo'>
-                            <img src="src/assets/logo.svg" alt="logo"/>
+                            <img src='src/assets/logo.svg' alt='logo'/>
                         </div>
                         <div className='logoStatement'>
                             <div className='font16'>Takeaway & Delivery template</div>
@@ -43,13 +43,13 @@ function Footer () {
                     </div>
                     <div className='socialMediaIcons'>
                         <div>
-                            <img src='src/assets/soccialMediaLogos/instagram.svg' alt='instagram'/>
+                            <img src='src/assets/social-media-logos/instagram.svg' alt='instagram'/>
                         </div>
                         <div>
-                            <img src='src/assets/soccialMediaLogos/twitter.svg' alt='twitter'/>
+                            <img src='src/assets/social-media-logos/twitter.svg' alt='twitter'/>
                         </div>
                         <div>
-                            <img src='src/assets/soccialMediaLogos/youtube.svg' alt='youtube'/>
+                            <img src='src/assets/social-media-logos/youtube.svg' alt='youtube'/>
                         </div>
                     </div>
                 </div>

@@ -3,7 +3,7 @@ footer{
     width: 100vw;
     justify-content: center;
     background-color: #F5FBFC;
-    background-image: url("src/assets/backgroundImagesShapes/Pattern_Footer.svg");
+    background-image: url("../../assets/background-images-shapes/Pattern_Footer.svg");
     background-repeat: no-repeat;
     background-position: bottom left;
     background-size: contain;
