@@ -1,10 +1,4 @@
 @import 'variables.css';
-@import 'components/header/header.css';
-@import 'components/footer/footer.css';
-@import 'pages/menu-page/menuPage.css';
-@import 'components/product-card/productCard.css';
-@import 'components/phone-number-tooltip/phoneNumberToolTip.css';
-
 
 body{
   margin: 0;
@@ -17,7 +11,5 @@ body{
     border-radius: 6px;
     border: 0;
     width: 147px;
-
-
   }
 }

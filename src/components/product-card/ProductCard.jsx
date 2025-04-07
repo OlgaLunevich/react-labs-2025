@@ -1,3 +1,5 @@
+import './productCard.css';
+
 function ProductCard ({product}) {
     return (
         <div className='productCardContainer'>

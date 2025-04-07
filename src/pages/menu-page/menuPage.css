@@ -25,7 +25,6 @@ main {
                 letter-spacing: 1.65px;
             }
             .browseMenuDescription{
-                /*horiz-align: center;*/
                 color: #546285;
                 font-size: 16px;
                 line-height: 27px;
@@ -52,20 +51,16 @@ main {
                 width: 466px;
 
                 button{
-                    /*width: 147px;*/
                     height: 52px;
                     font-size: 16px;
                     line-height: 20px;
                     letter-spacing: 0px;
+                    border: 1px solid #61728333;
                 }
                 .active {
                     color: #FFFFFF;
                     background-color: #35B8BE;
-                    border: 1px transparent;
-                }
-                :hover:not(.active){
-                    color: #222222;
-                    border: 1px solid #61728333;
+                    border: 1px solid transparent;
                 }
             }
         }

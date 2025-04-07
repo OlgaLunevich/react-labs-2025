@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ProductCard from "../../components/product-card/ProductCard.jsx";
 import products from "../../assets/productInfo(temporary folder)/products.js";
 import PhoneNumberToolTip from "../../components/phone-number-tooltip/PhoneNumberToolTip.jsx";
+import './menuPage.css';
 
 
 function  MenuPage () {
@@ -14,7 +15,7 @@ function  MenuPage () {
     };
 
     return (
-        <>    
+        <>
             <main>
                 <div className='mainContainer'>
                     <div className='browseInfoContainer'>

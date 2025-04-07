@@ -1,4 +1,7 @@
+import './header.css';
 import React, { useState } from 'react';
+
+
 function Header () {
     const [activeButton, setActiveButton] = useState('Menu');
 

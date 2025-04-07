@@ -1,3 +1,5 @@
+import './phoneNumberToolTip.css';
+
 function PhoneNumberToolTip() {
     return (
         <div className='phoneNumberToolTip'>
