@@ -1,0 +1,71 @@
+
+header {
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+
+    .headerContainer{
+        display: flex;
+        height: 100px;
+        width: 85%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .navBar {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 50%;
+            justify-content: space-between;
+
+            .navButtons {
+                display: flex;
+                flex-direction: row;
+                width: 80%;
+                justify-content: space-around;
+
+                button {
+                    background-color: #FFFFFF;
+
+                }
+                .active {
+                    color: #35B8BE;
+                }
+                :hover:not(.active){
+                    color: #28224B;
+                }
+            }
+
+
+            .basketButton{
+                background-color: #35B8BE;
+                width: 55px;
+                height: 55px;
+                border-radius: 4px;
+                background-image: url("../../assets/basketImg.svg");
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: 45%;
+                position: relative;
+
+                .basketCounter{
+                    width: 25px;
+                    height: 25px;
+                    background-color: #FFFFFF;                ;
+                    color: #35B8BE;
+                    border-radius: 100px;
+                    /*padding-top: 5px;*/
+                    position: absolute;
+                    top: -6px;
+                    left: 36px;
+                    box-shadow: 7px 7px 25px 0 #7E828F45;
+
+                    .basketCounterValue{
+                        padding-top: 5px;
+                    }
+                }
+            }
+        }
+    }
+}

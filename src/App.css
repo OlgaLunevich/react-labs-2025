@@ -1,22 +1,15 @@
-:root {
-  font-family: Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import 'variables.css';
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-}
-
-body {
+body{
   margin: 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
+  width: 100vw;
+  flex-direction: column;
+  font-weight: 400;
 
-ul {
-  list-style-type:  none;
+  button {
+    border-radius: 6px;
+    border: 0;
+    width: 147px;
+  }
 }

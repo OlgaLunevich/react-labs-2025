@@ -1,19 +1,15 @@
 import './App.css'
+import MenuPage from "./pages/menu-page/MenuPage.jsx";
+import Header from "./components/header/Header.jsx";
+import Footer from "./components/footer/Footer.jsx";
 
 function App() {
 
   return (
     <>
-    <div>
-      <ul>
-        <li>Hello!</li>
-        <li>Here is my first React Project</li>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-      </ul>
-    </div>      
+        <Header/>
+        <MenuPage/>
+        <Footer/>
     </>
   )
 }
