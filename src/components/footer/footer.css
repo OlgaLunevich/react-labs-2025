@@ -55,13 +55,26 @@ footer{
                 height: 60%;
                 justify-content: space-around;
 
+                a{
+                    text-decoration: none;
+                    color: #546285;
+
+                    &.disableLink{
+                        pointer-events: none;
+                    }
+                }
+
+                a:hover {
+                    text-decoration: none;
+                    color: #08090A;
+                }
+
 
                 .columnInfo {
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
                     color: #546285;
-
 
                     .infoTitle {
                         color: #08090A;                    ;
