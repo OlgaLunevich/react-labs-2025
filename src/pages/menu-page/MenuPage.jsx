@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ProductCard from "../../components/product-card/ProductCard.jsx";
-import PhoneNumberToolTip from "../../components/phone-number-tooltip/PhoneNumberToolTip.jsx";
+import PhoneNumber from "../../components/tooltips/phone-number/phoneNumber.jsx";
 import './menuPage.css';
 import axios from 'axios';
 
@@ -8,7 +8,6 @@ class MenuPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isHovered: false,
             activeButton: 'Desert',
             meals: [],
             loading: true,
@@ -34,13 +33,6 @@ class MenuPage extends Component {
         }));
     }
 
-    handleMouseEnter = () => {
-        this.setState({ isHovered: true });
-    };
-
-    handleMouseLeave = () => {
-        this.setState({ isHovered: false });
-    };
 
     handleButtonClick = (buttonName) => {
         if (this.state.activeButton !== buttonName) {
@@ -60,21 +52,7 @@ class MenuPage extends Component {
                                 Browse our menu
                             </div>
                             <div className='browseMenuDescription'>
-                                Use our menu to place an order online, or
-                                {''}
-                                <div
-                                    className='toolTipWrapper'
-                                    onMouseEnter={this.handleMouseEnter}
-                                    onMouseLeave={this.handleMouseLeave}
-                                >
-                                    <span className='phone-ToolTip'>
-                                        &nbsp;phone&nbsp;
-                                        {isHovered && (
-                                            <div><PhoneNumberToolTip /></div>
-                                        )}
-                                    </span>
-                                </div>
-                                {''}
+                                Use our menu to place an order online, or <PhoneNumber/>
                                 our store to place a pickup order. Fast and fresh food.
                             </div>
                             <div className='browseMenuButtons'>
@@ -111,13 +89,14 @@ class MenuPage extends Component {
                                 <ProductCard
                                     key={meal.id}
                                     product={{
+                                        id : meal.id,
                                         name: meal.meal,
                                         price: meal.price,
                                         src: meal.img,
                                         alt: meal.meal,
-                                        description: meal.instructions || "No description available",
+                                        description: meal.instructions || "The instruction is not available",
                                     }}
-                                    increaseBasketCount={this.props.increaseBasketCount}
+                                    updateBasketCount={this.props.updateBasketCount}
                                 />
                             ))}
                         </div>

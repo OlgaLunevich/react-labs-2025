@@ -9,13 +9,23 @@ class App extends Component {
         super(props);
         this.state = {
             basketCount: 0,
+            basketMap: {},
         };
     }
 
-    increaseBasketCount = () => {
-        this.setState((prevState) => ({
-            basketCount: prevState.basketCount + 1
-        }));
+    updateBasketCount = (productId, newCount) => {
+        this.setState((prevState) => {
+            const prevCount = prevState.basketMap[productId] || 0;
+            const newBasketMap = {
+                ...prevState.basketMap,
+                [productId]: newCount
+            };
+
+            return {
+                basketMap: newBasketMap,
+                basketCount: prevState.basketCount - prevCount + newCount
+            };
+        });
     };
 
     render() {
@@ -23,13 +33,11 @@ class App extends Component {
         return (
             <>
                 <Header basketCount={basketCount} />
-                <MenuPage increaseBasketCount={this.increaseBasketCount} />
+                <MenuPage updateBasketCount={this.updateBasketCount} />
                 <Footer/>
             </>
         )
     }
-
-
 }
 
 export default App;

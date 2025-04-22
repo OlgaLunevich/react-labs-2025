@@ -6,20 +6,29 @@ class ProductCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            count: 0
+            count: 0,
+            inputValue: '',
         };
     }
 
+    handleInputChange = (e) => {
+        this.setState({ inputValue: e.target.value });
+
+    }
+
     handleAddProduct = () => {
-        this.setState((prevState) => ({
-                count: prevState.count + 1
-        }));
-        this.props.increaseBasketCount();
+        const { inputValue } = this.state;
+        const countToAdd = parseInt(inputValue, 10);
+
+        if (!isNaN(countToAdd) && countToAdd >= 0) {
+            this.setState({ count: countToAdd });
+            this.props.updateBasketCount(this.props.product.id, countToAdd);
+        }
     };
 
     render() {
         const { product } = this.props;
-        const { count } = this.state;
+        const { inputValue } = this.state;
 
         return (
             <div className='productCardContainer'>
@@ -39,7 +48,13 @@ class ProductCard extends Component {
                         </div>
                         <div className='productCardButtons'>
                             <div className='countButton'>
-                                <button disabled>{count}</button>
+                                <input className='desiredCount'
+                                       type='number'
+                                       min='0'
+                                       value={inputValue}
+                                       onChange={this.handleInputChange}
+                                       placeholder='0'
+                                />
                             </div>
                             <div className='addProductButton'>
                                 <button onClick={this.handleAddProduct}>Add to card</button>

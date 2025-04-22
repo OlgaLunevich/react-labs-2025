@@ -31,15 +31,15 @@ main {
                 letter-spacing: 0.36px;
                 width: 57%;
                 text-align: center;
-
                 position: relative;
 
-                .toolTipWrapper{
-                    position: relative;
-                    display: inline-block;
-                    .phone-ToolTip{
-                        color: #35B8BE;
-                        cursor: pointer;
+                .phone-ToolTip{
+                    color: #35B8BE;
+                    cursor: pointer;
+
+                    .toolTipWrapper {
+                        position: relative;
+                        display: inline-block;
                     }
                 }
 
@@ -56,11 +56,13 @@ main {
                     line-height: 20px;
                     letter-spacing: 0px;
                     border: 1px solid #61728333;
+                    cursor: pointer;
                 }
                 .active {
                     color: #FFFFFF;
                     background-color: #35B8BE;
                     border: 1px solid transparent;
+
                 }
             }
         }
@@ -87,6 +89,7 @@ main {
                 color: #FFFFFF;
                 background-color: #35B8BE;
                 height: 52px;
+                cursor: pointer;
             }
         }
     }
