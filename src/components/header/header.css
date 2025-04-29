@@ -48,6 +48,7 @@ header {
                 background-position: center center;
                 background-size: 45%;
                 position: relative;
+                cursor: pointer;
 
                 .basketCounter{
                     width: 25px;
