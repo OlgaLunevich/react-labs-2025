@@ -1,115 +1,104 @@
-import React, { Component } from 'react';
-import ProductCard from "../../components/product-card/ProductCard.jsx";
+import React, {useState, useEffect} from 'react';
 import PhoneNumber from "../../components/tooltips/phone-number/phoneNumber.jsx";
 import './menuPage.css';
 import axios from 'axios';
+import FilteredProductList from "../../components/filtered-product-list/FilteredProductList.jsx";
+import filterByField from "../../helpers/filter-by-field-function/FilterByField.js";
 
-class MenuPage extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            activeButton: 'Desert',
-            meals: [],
-            loading: true,
-            error: null,
-            visibleCountCards: 6,
-        };
-    }
+const MenuPage = ({updateBasketCount}) => {
+    const [activeButton, setActiveButton] = useState('Dessert');
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [visibleCountCards, setVisibleCountCards] = useState(6);
+    const [meals, setMeals] = useState([]);
 
-    componentDidMount() {
-        axios.get("https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals")
-            .then((response) => {
-                this.setState({meals: response.data, loading: false});
-            })
+    useEffect(() => {
+            axios
+                .get("https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals")
+                .then((response) => {
+                    setMeals(response.data);
+                    setLoading(false);
+                })
 
-            .catch((error) => {
-                this.setState({error: error.message, loading: false});
-            })
-    }
+                .catch((error) => {
+                    setError({error: error.message});
+                    setLoading(false);
+                });
 
-    handleSeeMoreButton = () => {
-        this.setState((prevState) => ({
-            visibleCountCards: prevState.visibleCountCards + 6
-        }));
-    }
+        }, []
+    );
 
-
-    handleButtonClick = (buttonName) => {
-        if (this.state.activeButton !== buttonName) {
-            this.setState({ activeButton: buttonName });
-        }
+    const handleSeeMoreButton = () => {
+        setVisibleCountCards((prevState) => prevState + 6)
     };
 
-    render() {
-        const { isHovered, activeButton, meals, loading, error } = this.state;
+    const handleButtonClick = (buttonName) => {
+        setActiveButton(buttonName);
+        setVisibleCountCards(6);
+    };
 
-        return (
-            <>
-                <main>
-                    <div className='mainContainer'>
-                        <div className='browseInfoContainer'>
-                            <div className='browseMenuTitle'>
-                                Browse our menu
+    const filteredMeals = filterByField(meals, 'category', activeButton);
+
+    return (
+        <>
+            <main>
+                <div className='mainContainer'>
+                    <div className='browseInfoContainer'>
+                        <div className='browseMenuTitle'>
+                            Browse our menu
+                        </div>
+                        <div className='browseMenuDescription'>
+                            Use our menu to place an order online, or <PhoneNumber/>
+                            our store to place a pickup order. Fast and fresh food.
+                        </div>
+                        <div className='browseMenuButtons'>
+                            <div>
+                                <button
+                                        onClick={() => handleButtonClick('Dessert')}
+                                        className={activeButton === 'Dessert' ? 'active' : ''}
+                                >
+                                    Dessert
+                                </button>
                             </div>
-                            <div className='browseMenuDescription'>
-                                Use our menu to place an order online, or <PhoneNumber/>
-                                our store to place a pickup order. Fast and fresh food.
-                            </div>
-                            <div className='browseMenuButtons'>
-                                <div>
-                                    <button disabled
-                                        onClick={() => this.handleButtonClick('Desert')}
-                                        className={activeButton === 'Desert' ? 'active' : ''}
-                                    >
-                                        Desert
-                                    </button>
-                                </div>
-                                <div>
-                                    <button disabled
-                                        onClick={() => this.handleButtonClick('Dinner')}
+                            <div>
+                                <button
+                                        onClick={() => handleButtonClick('Dinner')}
                                         className={activeButton === 'Dinner' ? 'active' : ''}
-                                    >
-                                        Dinner
-                                    </button>
-                                </div>
-                                <div>
-                                    <button disabled
-                                        onClick={() => this.handleButtonClick('Breakfast')}
+                                >
+                                    Dinner
+                                </button>
+                            </div>
+                            <div>
+                                <button
+                                        onClick={() => handleButtonClick('Breakfast')}
                                         className={activeButton === 'Breakfast' ? 'active' : ''}
-                                    >
-                                        Breakfast
-                                    </button>
-                                </div>
+                                >
+                                    Breakfast
+                                </button>
                             </div>
                         </div>
-                        <div className='productsGridContainer'>
-                            {loading && <p>Please, wait! Loading...</p>}
-                            {error && <p>Error: {error}</p>}
-                            {!loading && !error && meals.slice(0, this.state.visibleCountCards).map((meal) => (
-                                <ProductCard
-                                    key={meal.id}
-                                    product={{
-                                        id : meal.id,
-                                        name: meal.meal,
-                                        price: meal.price,
-                                        src: meal.img,
-                                        alt: meal.meal,
-                                        description: meal.instructions || "The instruction is not available",
-                                    }}
-                                    updateBasketCount={this.props.updateBasketCount}
-                                />
-                            ))}
-                        </div>
-                        {this.state.visibleCountCards < this.state.meals.length && (
-                            <div className='expandButton'>
-                                <button onClick={this.handleSeeMoreButton}>See more</button>
-                            </div>
-                        )}
                     </div>
-                </main>
-            </>
-        );
-    }
+                    <div >
+                        {loading && <p>Please, wait! Loading...</p>}
+                        {error && <p>Error: {error}</p>}
+                        <FilteredProductList
+                            meals = {meals}
+                            activeCategory = {activeButton}
+                            visibleCount = {visibleCountCards}
+                            updateBasketCount = {updateBasketCount}
+                        />
+                    </div>
+
+                    {visibleCountCards < filteredMeals.length && (
+                        <div className='expandButton'>
+                            <button onClick={handleSeeMoreButton}>See more</button>
+                        </div>
+                    )}
+                </div>
+            </main>
+        </>
+    )
 }
 
 export default MenuPage;
+
