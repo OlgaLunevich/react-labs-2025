@@ -1,70 +1,57 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import './productCard.css';
 
 
-class ProductCard extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            count: 0,
-            inputValue: '',
-        };
-    }
+const ProductCard = ({product, updateBasketCount}) => {
+    const [count, setCount] = useState(0);
+    const [inputValue, setInputValue] = useState('');
 
-    handleInputChange = (e) => {
-        this.setState({ inputValue: e.target.value });
+    const handleInputChange = (e) => {
+        setInputValue(e.target.value);
+    };
 
-    }
-
-    handleAddProduct = () => {
-        const { inputValue } = this.state;
-        const countToAdd = parseInt(inputValue, 10);
-
+    const handleAddProduct = () => {
+        const countToAdd = parseInt(inputValue,10);
         if (!isNaN(countToAdd) && countToAdd >= 0) {
-            this.setState({ count: countToAdd });
-            this.props.updateBasketCount(this.props.product.id, countToAdd);
+            setCount(countToAdd);
+            updateBasketCount(product.id, countToAdd);
         }
     };
 
-    render() {
-        const { product } = this.props;
-        const { inputValue } = this.state;
-
-        return (
-            <div className='productCardContainer'>
-                <div className='productCard'>
-                    <div className='productPhoto'>
-                        <img src={product.src} alt={product.name} />
+    return (
+        <div className='productCardContainer'>
+            <div className='productCard'>
+                <div className='productPhoto'>
+                    <img src={product.src} alt={product.name} />
+                </div>
+                <div className='infoProduct'>
+                    <div className='cardFirstRow'>
+                        <div className='productName'>{product.name}</div>
+                        <div className='price'>
+                            {product.price} $
+                        </div>
                     </div>
-                    <div className='infoProduct'>
-                        <div className='cardFirstRow'>
-                            <div className='productName'>{product.name}</div>
-                            <div className='price'>
-                                {product.price} $
-                            </div>
+                    <div className='productDescription'>
+                        {product.description}
+                    </div>
+                    <div className='productCardButtons'>
+                        <div className='countButton'>
+                            <input className='desiredCount'
+                                   type='number'
+                                   min='0'
+                                   value={inputValue}
+                                   onChange={handleInputChange}
+                                   placeholder='0'
+                            />
                         </div>
-                        <div className='productDescription'>
-                            {product.description}
-                        </div>
-                        <div className='productCardButtons'>
-                            <div className='countButton'>
-                                <input className='desiredCount'
-                                       type='number'
-                                       min='0'
-                                       value={inputValue}
-                                       onChange={this.handleInputChange}
-                                       placeholder='0'
-                                />
-                            </div>
-                            <div className='addProductButton'>
-                                <button onClick={this.handleAddProduct}>Add to card</button>
-                            </div>
+                        <div className='addProductButton'>
+                            <button onClick={handleAddProduct}>Add to card</button>
                         </div>
                     </div>
                 </div>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
 
 export default ProductCard;
