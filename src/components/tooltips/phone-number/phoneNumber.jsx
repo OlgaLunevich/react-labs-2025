@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import PhoneNumberToolTip from "../phone-number-tooltip/PhoneNumberToolTip.jsx";
 
-const PhoneNumber = () => {
+const PhoneNumber = ({children}) => {
     const [isHovered, setIsHovered] = useState(false);
 
     const handleMouseEnter = () => setIsHovered(true);
@@ -16,7 +15,7 @@ const PhoneNumber = () => {
             &nbsp;phone&nbsp;
             {isHovered && (
                 <div className='toolTipWrapper'>
-                    <PhoneNumberToolTip />
+                    {children}
                 </div>
             )}
         </span>

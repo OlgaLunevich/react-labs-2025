@@ -3,7 +3,7 @@ import PhoneNumber from "../../components/tooltips/phone-number/phoneNumber.jsx"
 import './menuPage.css';
 import axios from 'axios';
 import FilteredProductList from "../../components/filtered-product-list/FilteredProductList.jsx";
-import filterByField from "../../helpers/filter-by-field-function/FilterByField.js";
+import PhoneNumberToolTip from "../../components/tooltips/phone-number-tooltip/PhoneNumberToolTip.jsx";
 
 const MenuPage = ({updateBasketCount}) => {
     const [activeButton, setActiveButton] = useState('Dessert');
@@ -14,7 +14,7 @@ const MenuPage = ({updateBasketCount}) => {
 
     useEffect(() => {
             axios
-                .get("https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals")
+                .get(`https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals?category=${activeButton}`)
                 .then((response) => {
                     setMeals(response.data);
                     setLoading(false);
@@ -25,7 +25,7 @@ const MenuPage = ({updateBasketCount}) => {
                     setLoading(false);
                 });
 
-        }, []
+        }, [activeButton]
     );
 
     const handleSeeMoreButton = () => {
@@ -36,9 +36,6 @@ const MenuPage = ({updateBasketCount}) => {
         setActiveButton(buttonName);
         setVisibleCountCards(6);
     };
-
-    const filteredMeals = filterByField(meals, 'category', activeButton);
-
     return (
         <>
             <main>
@@ -48,7 +45,10 @@ const MenuPage = ({updateBasketCount}) => {
                             Browse our menu
                         </div>
                         <div className='browseMenuDescription'>
-                            Use our menu to place an order online, or <PhoneNumber/>
+                            Use our menu to place an order online, or
+                            <PhoneNumber>
+                                <PhoneNumberToolTip />
+                            </PhoneNumber>
                             our store to place a pickup order. Fast and fresh food.
                         </div>
                         <div className='browseMenuButtons'>
@@ -83,13 +83,12 @@ const MenuPage = ({updateBasketCount}) => {
                         {error && <p>Error: {error}</p>}
                         <FilteredProductList
                             meals = {meals}
-                            activeCategory = {activeButton}
                             visibleCount = {visibleCountCards}
                             updateBasketCount = {updateBasketCount}
                         />
                     </div>
 
-                    {visibleCountCards < filteredMeals.length && (
+                    {visibleCountCards < meals.length && (
                         <div className='expandButton'>
                             <button onClick={handleSeeMoreButton}>See more</button>
                         </div>

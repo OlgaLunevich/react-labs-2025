@@ -18,7 +18,6 @@ const ProductCard = ({product, updateBasketCount}) => {
         }
     };
 
-
     return (
         <div className='productCardContainer'>
             <div className='productCard'>
