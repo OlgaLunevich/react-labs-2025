@@ -1,32 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import PhoneNumber from "../../components/tooltips/phone-number/phoneNumber.jsx";
 import './menuPage.css';
-import axios from 'axios';
 import FilteredProductList from "../../components/filtered-product-list/FilteredProductList.jsx";
 import PhoneNumberToolTip from "../../components/tooltips/phone-number-tooltip/PhoneNumberToolTip.jsx";
+import useFetch from "../../components/custom-hooks.jsx";
 
 const MenuPage = ({updateBasketCount}) => {
     const [activeButton, setActiveButton] = useState('Dessert');
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     const [visibleCountCards, setVisibleCountCards] = useState(6);
-    const [meals, setMeals] = useState([]);
 
-    useEffect(() => {
-            axios
-                .get(`https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals?category=${activeButton}`)
-                .then((response) => {
-                    setMeals(response.data);
-                    setLoading(false);
-                })
-
-                .catch((error) => {
-                    setError({error: error.message});
-                    setLoading(false);
-                });
-
-        }, [activeButton]
-    );
+    const url = `https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals?category=${activeButton}`;
+    const { data: meals = [], loading, error } = useFetch(url);
 
     const handleSeeMoreButton = () => {
         setVisibleCountCards((prevState) => prevState + 6)
@@ -36,6 +20,7 @@ const MenuPage = ({updateBasketCount}) => {
         setActiveButton(buttonName);
         setVisibleCountCards(6);
     };
+
     return (
         <>
             <main>
