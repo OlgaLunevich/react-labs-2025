@@ -1,0 +1,81 @@
+/* This file is saved for using it in future. Needs improvements*/
+
+/*main{*/
+/*    display: flex;*/
+/*    width: 100vw;*/
+/*    justify-content: center;*/
+/*    background-image: url(../../assets/background-images-shapes/BG-Shape-Home-page.svg);*/
+/*    background-size: cover;*/
+/*    height: 820px;*/
+/*    align-items: center;*/
+
+
+/*    .mainContainer{*/
+/*        display: flex;*/
+/*        flex-direction: row;*/
+/*        align-items: center;*/
+/*        justify-content: space-between;
+/*        height: 581px;*/
+/*        width: 85%;*/
+
+/*        .infoBlock{*/
+/*            display: flex;*/
+/*            flex-direction: column;*/
+/*            justify-content: space-between;*/
+/*            height: 494px;*/
+
+/*            .title{*/
+/*                font-size: 60px;*/
+/*                font-weight: 400;*/
+/*                line-height: 60px;*/
+/*                letter-spacing: 1.8px;*/
+/*                width: 590px;*/
+/*                height: 180px;*/
+/*                white-space: normal;*/
+/*                word-break: normal;*/
+/*                overflow-wrap: break-word;*/
+
+/*                .highlightedText {*/
+/*                    color: #35B8BE;*/
+/*                }*/
+
+/*            }*/
+
+/*            .description{*/
+/*                color: #546285;*/
+/*                font-size: 18px;*/
+/*                font-weight: 400;*/
+/*                line-height: 24px;*/
+/*                letter-spacing: 0.36px;*/
+/*                width: 539px;*/
+/*                height: 73px;*/
+/*            }*/
+
+/*            button{*/
+/*                background-color: #35B8BE;*/
+/*                color: #FFFFFF;*/
+/*                height: 60px;*/
+/*                width: 193px;*/
+/*                font-size: 17px;*/
+/*                font-weight: 400;*/
+/*                line-height: 20px;*/
+/*                letter-spacing: 0px;*/
+/*                text-align: center;*/
+/*                border-radius: 6px;*/
+/*                cursor: pointer;*/
+/*            }*/
+
+/*            .reviewSection{*/
+/*                display: flex;*/
+/*                flex-direction: column;*/
+/*                justify-content: space-between;*/
+/*                width: 282px;*/
+/*                height: 57px;*/
+
+/*                .highlightedText{*/
+/*                    color: #35B8BE;*/
+/*                }*/
+/*            }*/
+/*        }*/
+/*    }*/
+/*}*/
