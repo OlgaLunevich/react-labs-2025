@@ -1,12 +1,17 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import './productCard.css';
+import {Product} from "../../shared/types/product.type";
 
+interface IProductCardProps {
+    product: Product;
+    updateBasketCount: (id: string, value: number) => void;
+}
 
-const ProductCard = ({product, updateBasketCount}) => {
+const ProductCard = ({product, updateBasketCount}: IProductCardProps) => {
     const [count, setCount] = useState(0);
     const [inputValue, setInputValue] = useState('');
 
-    const handleInputChange = (e) => {
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value);
     };
 
@@ -22,17 +27,17 @@ const ProductCard = ({product, updateBasketCount}) => {
         <div className='productCardContainer'>
             <div className='productCard'>
                 <div className='productPhoto'>
-                    <img src={product.src} alt={product.name} />
+                    <img src={product.img} alt={product.meal} />
                 </div>
                 <div className='infoProduct'>
                     <div className='cardFirstRow'>
-                        <div className='productName'>{product.name}</div>
+                        <div className='productName'>{product.meal}</div>
                         <div className='price'>
                             {product.price} $
                         </div>
                     </div>
                     <div className='productDescription'>
-                        {product.description}
+                        {product.instructions}
                     </div>
                     <div className='productCardButtons'>
                         <div className='countButton'>
