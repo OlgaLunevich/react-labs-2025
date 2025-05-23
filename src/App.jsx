@@ -1,10 +1,13 @@
 import './App.css'
-import MenuPage from "./pages/menu-page/MenuPage.jsx";
+import {BrowserRouter} from "react-router-dom";
+import AppRoutes from "./app-routes/appRoutes.jsx";
+import React from 'react';
+import {useState, useCallback} from "react";
 import Header from "./components/header/Header.jsx";
 import Footer from "./components/footer/Footer.jsx";
-import React, { Component } from 'react';
-import {useState, useCallback} from "react";
-import HomePage from "./pages/home-page/HomePage.jsx";
+import {AuthProvider} from "./context/AuthContex.jsx";
+
+
 
 
 const App = () => {
@@ -31,13 +34,13 @@ const App = () => {
     );
 
     return (
-        <>
-            <Header basketCount={basketCount} />
-            {/*<MenuPage updateBasketCount={updateBasketCount} />*/}
-            <HomePage/>
-            <Footer />
-        </>
+        <BrowserRouter>
+            <AuthProvider>
+                <Header basketCount={basketCount} />
+                <AppRoutes updateBasketCount={updateBasketCount} />
+                <Footer />
+            </AuthProvider>
+        </BrowserRouter>
     )
-}
+};
 export default App;
-
