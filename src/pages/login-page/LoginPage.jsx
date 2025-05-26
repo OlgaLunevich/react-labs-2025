@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './loginPage.css';
 import {auth, db} from "../../firebase.js";
 import { setDoc, doc } from "firebase/firestore";
 import {signInWithEmailAndPassword, createUserWithEmailAndPassword} from 'firebase/auth';
 import {validateLoginForm} from "../../components/helpers.js";
 import {useSignOut} from "react-firebase-hooks/auth";
+import {onAuthStateChanged} from "firebase/auth";
 
 const LoginPage = () => {
     const [activeButton, setActiveButton] = useState('Login');
@@ -13,6 +14,14 @@ const LoginPage = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [signOut, loadingSignOut, errorSignOut ] = useSignOut(auth);
+    const [currentUser, setCurrentUser] = useState(null);
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setCurrentUser(user);
+        });
+        return () => unsubscribe();
+    }, []);
 
     const handleButtonClick = (buttonName) => {
         setActiveButton(buttonName);
@@ -95,7 +104,7 @@ const LoginPage = () => {
                    <form className="loginPageForm" onSubmit={handleSubmitForm}>
                        <div className="loginFormRow">
                            <label>Email
-                               <input style={{marginLeft:"81px"}}
+                               <input style={{marginLeft: "81px"}}
                                       type="email"
                                       autoComplete="email"
                                       placeholder="еmail"
@@ -108,38 +117,47 @@ const LoginPage = () => {
                        <div className="loginFormRow">
                            <label>Password
                                <input type="password"
-                                         placeholder="••••••••••••••••"
-                                         autoComplete="current-password"
-                                         value={password}
-                                         onChange={(e) => setPassword(e.target.value)}
+                                      placeholder="••••••••••••••••"
+                                      autoComplete="current-password"
+                                      value={password}
+                                      onChange={(e) => setPassword(e.target.value)}
                                />
                            </label>
                            {error?.password && <div className="error-message">{error.password}</div>}
                        </div>
                        <div className="loginPageButtons">
-                           <button type='submit' disabled={!email || !password}
-                               onClick={() => handleButtonClick('Login')}
-                               className={activeButton === 'Login' ? 'active' : ''}
-                           >Login
-                           </button>
-                           <button
-                               type="button"
-                               onClick={() => handleLogoutButton()}
-                               className={activeButton === 'Logout' ? 'active' : ''}
-                           >Logout
-                           </button>
-                           <button
-                               type="button"
-
-                               onClick={() => {
-                                   setEmail('');
-                                   setPassword('');
-                                   setError(null);
-                                   setActiveButton('Cancel');
-                               }}
-                               className={activeButton === 'Cancel' ? 'active' : ''}
-                           >Cancel
-                           </button>
+                           {!currentUser ? (
+                               <>
+                                   <button
+                                       type='submit'
+                                       disabled={!email || !password}
+                                       onClick={() => handleButtonClick('Login')}
+                                       className={activeButton === 'Login' ? 'active' : ''}
+                                   >
+                                       Login
+                                   </button>
+                                   <button
+                                       type="button"
+                                       onClick={() => {
+                                           setEmail('');
+                                           setPassword('');
+                                           setError(null);
+                                           setActiveButton('Cancel');
+                                       }}
+                                       className={activeButton === 'Cancel' ? 'active' : ''}
+                                   >
+                                       Cancel
+                                   </button>
+                               </>
+                           ) : (
+                               <button
+                                   type="button"
+                                   onClick={() => handleLogoutButton()}
+                                   className={activeButton === 'Logout' ? 'active' : ''}
+                               >
+                                   Logout
+                               </button>
+                           )}
                        </div>
                    </form>
                </div>
