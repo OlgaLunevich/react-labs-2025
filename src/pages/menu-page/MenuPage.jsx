@@ -3,7 +3,7 @@ import PhoneNumber from "../../components/tooltips/phone-number/phoneNumber.jsx"
 import './menuPage.css';
 import FilteredProductList from "../../components/filtered-product-list/FilteredProductList.jsx";
 import PhoneNumberToolTip from "../../components/tooltips/phone-number-tooltip/PhoneNumberToolTip.jsx";
-import useFetch from "../../components/custom-hooks.jsx";
+import useFetch from "../../components/custom-hooks.ts";
 
 const MenuPage = ({updateBasketCount}) => {
     const [activeButton, setActiveButton] = useState('Dessert');
