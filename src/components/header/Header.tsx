@@ -1,11 +1,19 @@
 import './header.css';
 import React, { useState} from 'react';
+import {useNavigate} from "react-router-dom";
 
-const Header = ({basketCount}) => {
-    const [activeButton, setActiveButton] = useState('Menu');
-    const handleButtonClick = (buttonName) => {
+interface IHeaderProps {
+    basketCount: number;
+}
+
+const Header = ({basketCount}: IHeaderProps) => {
+    const [activeButton, setActiveButton] = useState<string>('Home');
+    const navigate = useNavigate();
+
+    const handleButtonClick = (buttonName: string, route: string) => {
         setActiveButton(buttonName);
-    }
+        navigate(route);
+    };
 
     return (
         <header>
@@ -16,16 +24,16 @@ const Header = ({basketCount}) => {
                 <div className='navBar'>
                     <div className='navButtons'>
                         <div>
-                            <button disabled
-                                    onClick={() => handleButtonClick('Home')}
+                            <button
+                                    onClick={() => handleButtonClick('Home','/')}
                                     className={activeButton === 'Home' ? 'active' : ''}
                             >
                                 Home
                             </button>
                         </div>
                         <div>
-                            <button disabled
-                                    onClick={() => handleButtonClick('Menu')}
+                            <button
+                                    onClick={() => handleButtonClick('Menu', '/Menu_Page')}
                                     className={activeButton === 'Menu' ? 'active' : ''}
                             >
                                 Menu
@@ -33,15 +41,15 @@ const Header = ({basketCount}) => {
                         </div>
                         <div>
                             <button disabled
-                                    onClick={() => handleButtonClick('Company')}
+                                    onClick={() => handleButtonClick('Company', '/Company_page')}
                                     className={activeButton === 'Company' ? 'active' : ''}
                             >
                                 Company
                             </button>
                         </div>
                         <div>
-                            <button disabled
-                                    onClick={() => handleButtonClick('Login')}
+                            <button
+                                    onClick={() => handleButtonClick('Login','/Login_page')}
                                     className={activeButton === 'Login' ? 'active' : ''}
                             >
                                 Login
