@@ -1,7 +1,15 @@
 import React from 'react';
 import ProductCard from "../product-card/ProductCard.jsx";
+import {Product} from "../../shared/types/product.type.js";
 
-const FilteredProductList = ({ meals, visibleCount, updateBasketCount }) => {
+
+interface IFilteredProductListProps {
+    meals: Product[],
+    visibleCount: number,
+    updateBasketCount: (productId: string, newCount: number) => void;
+}
+
+const FilteredProductList = ({ meals, visibleCount, updateBasketCount }: IFilteredProductListProps) => {
     return (
         <>
             <div className='productsGridContainer'>
@@ -10,10 +18,10 @@ const FilteredProductList = ({ meals, visibleCount, updateBasketCount }) => {
                         key={meal.id}
                         product={{
                             ...meal,
-                            name: meal.meal,
-                            src: meal.img,
+                            meal: meal.meal,
+                            img: meal.img,
                             price: meal.price,
-                            description: meal.instructions || "The instruction is not available",
+                            instructions: meal.instructions || "The instruction is not available",
                         }}
                         updateBasketCount={updateBasketCount}
                     />
@@ -24,3 +32,7 @@ const FilteredProductList = ({ meals, visibleCount, updateBasketCount }) => {
 };
 
 export default FilteredProductList;
+
+
+
+

@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 
-const PhoneNumber = ({children}) => {
-    const [isHovered, setIsHovered] = useState(false);
+interface IPhoneNumberProps {
+    children: React.ReactNode;
+}
+
+const PhoneNumber = ({children}: IPhoneNumberProps) => {
+    const [isHovered, setIsHovered] = useState<boolean>(false);
 
     const handleMouseEnter = () => setIsHovered(true);
     const handleMouseLeave = () => setIsHovered(false);

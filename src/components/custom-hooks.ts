@@ -36,8 +36,6 @@ const useFetch = <T = unknown>({url, trigger = true}: IUseFetchProps) => {
                 setLoading(false);
             }
         };
-
-        // fetchData();
         fetchData().catch(err => {
             console.error("Fetch error:", err);
         });

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {
     HomeMain,
     HomeMainContainer,
@@ -16,7 +16,7 @@ import starImg from '../../assets/star_Trustpilot.svg';
 import trustpilotImg from '../../assets/Trustpilot.svg';
 import homeImage from '../../assets/home-Page-image.svg';
 
-const HomePage = () => {
+const HomePage: FC = () => {
     return (
         <HomeMain>
             <HomeMainContainer>

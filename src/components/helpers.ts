@@ -1,11 +1,16 @@
-const filterByField = (items, field, value) => {
-    return items.filter((item) => item[field] === value);
-};
 
-export  {filterByField};
+interface IValidateLoginFormProps {
+        email: string,
+        password: string
+}
 
-const validateLoginForm = ({ email, password }) => {
-    const errors = {};
+interface ILoginFormErrorsProps {
+    email?: string,
+    password?: string
+}
+
+const validateLoginForm = ({ email, password }: IValidateLoginFormProps) => {
+    const errors : ILoginFormErrorsProps = {};
 
     if (!email) {
         errors.email = "Email is required";
@@ -41,4 +46,4 @@ const validateLoginForm = ({ email, password }) => {
     return errors;
 };
 
-export {validateLoginForm};
+export default validateLoginForm;

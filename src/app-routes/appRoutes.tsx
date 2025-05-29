@@ -1,10 +1,15 @@
 import {Routes, Route} from "react-router-dom";
-import HomePage from "../pages/home-page/HomePage.jsx";
-import LoginPage from "../pages/login-page/LoginPage.jsx";
-import MenuPage from "../pages/menu-page/MenuPage.jsx";
-import ProtectedRoute from "./ProtectedRout.jsx";
+import HomePage from "../pages/home-page/HomePage";
+import LoginPage from "../pages/login-page/LoginPage";
+import MenuPage from "../pages/menu-page/MenuPage";
+import ProtectedRoute from "./ProtectedRout";
+import React from "react";
 
-const AppRoutes = ({updateBasketCount}) => {
+interface IAppRoutesProps {
+    updateBasketCount: (productId: string, newCount: number) => void;
+}
+
+const AppRoutes= ({updateBasketCount}: IAppRoutesProps) => {
     return (
         <Routes>
             <Route path='/'  element={<HomePage/>} />
