@@ -1,20 +1,28 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, FormEvent} from 'react';
 import './loginPage.css';
-import {auth, db} from "../../firebase.js";
+import {auth, db} from "../../firebase";
+import { FirebaseError } from 'firebase/app';
 import { setDoc, doc } from "firebase/firestore";
-import {signInWithEmailAndPassword, createUserWithEmailAndPassword} from 'firebase/auth';
-import {validateLoginForm} from "../../components/helpers.js";
+import {signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, User} from 'firebase/auth';
+import validateLoginForm from "../../components/helpers";
 import {useSignOut} from "react-firebase-hooks/auth";
-import {onAuthStateChanged} from "firebase/auth";
+
+interface ILoginFormErrorsProps {
+    email?: string,
+    password?: string,
+    general?: string
+}
+
+type ILoginFormButtonType = 'Login' | 'Cancel' | 'Logout';
 
 const LoginPage = () => {
-    const [activeButton, setActiveButton] = useState('Login');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [activeButton, setActiveButton] = useState<ILoginFormButtonType>('Login');
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [loading, setLoading] = useState<boolean>(false);
+    const [error, setError] = useState<ILoginFormErrorsProps|null>(null);
     const [signOut, loadingSignOut, errorSignOut ] = useSignOut(auth);
-    const [currentUser, setCurrentUser] = useState(null);
+    const [currentUser, setCurrentUser] = useState<User|null>(null);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -23,11 +31,11 @@ const LoginPage = () => {
         return () => unsubscribe();
     }, []);
 
-    const handleButtonClick = (buttonName) => {
+    const handleButtonClick = (buttonName: ILoginFormButtonType) => {
         setActiveButton(buttonName);
     };
 
-    const handleSubmitForm = async (e) => {
+    const handleSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
         setError(null);
@@ -43,33 +51,33 @@ const LoginPage = () => {
         }
 
         try {
-            const userCredential = await signInWithEmailAndPassword(auth, email, password)
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
             console.log("User Logged in", userCredential.user);
-        }
-        catch (error) {
-            setError({ general: error.message });
-            console.log("1 Something wrong during log in... error: ",error.message);
-            if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
+        } catch (error) {
+            if (error instanceof FirebaseError) {
+                setError({ general: error.message });
+                console.log("1 Something wrong during log in... error: ", error.message);
 
-                try {
-                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                    const uid = userCredential.user.uid;
+                if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
+                    try {
+                        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                        const uid = userCredential.user.uid;
 
-                    console.log('New user created', uid);
+                        console.log('New user created', uid);
 
-                    await setDoc(doc(db, 'users', uid), {
+                        await setDoc(doc(db, 'users', uid), {
                             email: email,
                             createdAt: new Date(),
-                        }
-                    )
-                } catch (createError) {
-                    console.log("Error creating user:", createError);
-                    setError({ general: createError.message });
+                        });
+                    } catch (createError) {
+                        const err = createError as FirebaseError;
+                        console.log("Error creating user:", err);
+                        setError({ general: err.message });
+                    }
                 }
-
             } else {
-                setError({ general: error.message });
-                console.log("2 Something wrong during log in... error: ",error.message);
+                setError({ general: 'An unexpected error occurred during login' });
+                console.log("Unknown error: ", error);
             }
         }
         finally {

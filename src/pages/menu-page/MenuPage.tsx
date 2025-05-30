@@ -1,22 +1,29 @@
 import React, {useState} from 'react';
-import PhoneNumber from "../../components/tooltips/phone-number/phoneNumber.jsx";
+import PhoneNumber from "../../components/tooltips/phone-number/phoneNumber";
 import './menuPage.css';
-import FilteredProductList from "../../components/filtered-product-list/FilteredProductList.jsx";
-import PhoneNumberToolTip from "../../components/tooltips/phone-number-tooltip/PhoneNumberToolTip.jsx";
-import useFetch from "../../components/custom-hooks.ts";
+import FilteredProductList from "../../components/filtered-product-list/FilteredProductList";
+import PhoneNumberToolTip from "../../components/tooltips/phone-number-tooltip/PhoneNumberToolTip";
+import useFetch from "../../components/custom-hooks";
+import {Product} from "../../shared/types/product.type";
 
-const MenuPage = ({updateBasketCount}) => {
-    const [activeButton, setActiveButton] = useState('Dessert');
-    const [visibleCountCards, setVisibleCountCards] = useState(6);
+interface IMenuPageProps {
+    updateBasketCount: (productId: string, newCount: number) => void;
+}
+
+
+
+const MenuPage = ({updateBasketCount}: IMenuPageProps) => {
+    const [activeButton, setActiveButton] = useState <string>('Dessert');
+    const [visibleCountCards, setVisibleCountCards] = useState<number>(6);
 
     const url = `https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals?category=${activeButton}`;
-    const { data: meals = [], loading, error } = useFetch(url);
+    const { data: meals = [], loading, error } = useFetch<Product>({url});
 
     const handleSeeMoreButton = () => {
         setVisibleCountCards((prevState) => prevState + 6)
     };
 
-    const handleButtonClick = (buttonName) => {
+    const handleButtonClick = (buttonName: string) => {
         setActiveButton(buttonName);
         setVisibleCountCards(6);
     };
