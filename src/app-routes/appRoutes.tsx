@@ -5,17 +5,13 @@ import MenuPage from "../pages/menu-page/MenuPage";
 import ProtectedRoute from "./ProtectedRout";
 import React from "react";
 
-interface IAppRoutesProps {
-    updateBasketCount: (productId: string, newCount: number) => void;
-}
-
-const AppRoutes= ({updateBasketCount}: IAppRoutesProps) => {
+const AppRoutes= () => {
     return (
         <Routes>
             <Route path='/'  element={<HomePage/>} />
             <Route path='/Menu_Page'  element={
                 <ProtectedRoute>
-                    <MenuPage updateBasketCount={updateBasketCount} />
+                    <MenuPage />
                 </ProtectedRoute>
             } />
             <Route path='/Login_page'  element={<LoginPage/>} />

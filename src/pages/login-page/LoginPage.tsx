@@ -1,4 +1,4 @@
-import React, {useState, useEffect, FormEvent} from 'react';
+import React, {useState} from 'react';
 import './loginPage.css';
 import {auth, db} from "../../firebase";
 import { FirebaseError } from 'firebase/app';
@@ -6,6 +6,9 @@ import { setDoc, doc } from "firebase/firestore";
 import {signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, User} from 'firebase/auth';
 import validateLoginForm from "../../components/helpers";
 import {useSignOut} from "react-firebase-hooks/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { login, logout } from "../../redux/slicers/authSlice";
+import {RootState} from "../../redux/store";
 
 interface ILoginFormErrorsProps {
     email?: string,
@@ -16,20 +19,16 @@ interface ILoginFormErrorsProps {
 type ILoginFormButtonType = 'Login' | 'Cancel' | 'Logout';
 
 const LoginPage = () => {
+    const dispatch = useDispatch();
+    const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
+    //const user = useSelector((state: RootState) => state.auth.user);
+
     const [activeButton, setActiveButton] = useState<ILoginFormButtonType>('Login');
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<ILoginFormErrorsProps|null>(null);
     const [signOut, loadingSignOut, errorSignOut ] = useSignOut(auth);
-    const [currentUser, setCurrentUser] = useState<User|null>(null);
-
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            setCurrentUser(user);
-        });
-        return () => unsubscribe();
-    }, []);
 
     const handleButtonClick = (buttonName: ILoginFormButtonType) => {
         setActiveButton(buttonName);
@@ -69,6 +68,7 @@ const LoginPage = () => {
                             email: email,
                             createdAt: new Date(),
                         });
+                        dispatch(login(userCredential.user.email!));
                     } catch (createError) {
                         const err = createError as FirebaseError;
                         console.log("Error creating user:", err);
@@ -83,26 +83,23 @@ const LoginPage = () => {
         finally {
             setLoading(false);
         }
-
     };
+
 
     const handleLogoutButton = async () => {
-        setActiveButton('Logout');
-        setEmail('');
-        setPassword('');
-        setError(null);
-        console.log("Form cleaned");
-        console.log({ name: '', password: '' });
-
         try {
             await signOut();
-            console.log("User logged out");
+            dispatch(logout());
+            setEmail('');
+            setPassword('');
+            setError(null);
+            setActiveButton('Logout');
+        } catch (error) {
+            console.log("Error during logout:", error);
         }
-        catch (error) {
-            console.log("Something wrong during log out... error: ",error);
-        }
-
     };
+
+
 
     return (
         <>
@@ -134,7 +131,7 @@ const LoginPage = () => {
                            {error?.password && <div className="error-message">{error.password}</div>}
                        </div>
                        <div className="loginPageButtons">
-                           {!currentUser ? (
+                           {!isAuthenticated ?(
                                <>
                                    <button
                                        type='submit'
@@ -176,3 +173,31 @@ const LoginPage = () => {
 export default LoginPage;
 
 
+
+// const [currentUser, setCurrentUser] = useState<User|null>(null);
+
+// useEffect(() => {
+//     const unsubscribe = onAuthStateChanged(auth, (user) => {
+//         setCurrentUser(user);
+//     });
+//     return () => unsubscribe();
+// }, []);
+
+
+// const handleLogoutButton = async () => {
+//     setActiveButton('Logout');
+//     setEmail('');
+//     setPassword('');
+//     setError(null);
+//     console.log("Form cleaned");
+//     console.log({ name: '', password: '' });
+//
+//     try {
+//         await signOut();
+//         console.log("User logged out");
+//     }
+//     catch (error) {
+//         console.log("Something wrong during log out... error: ",error);
+//     }
+//
+// };
