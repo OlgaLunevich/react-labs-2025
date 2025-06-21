@@ -5,19 +5,22 @@ import FilteredProductList from "../../components/filtered-product-list/Filtered
 import PhoneNumberToolTip from "../../components/tooltips/phone-number-tooltip/PhoneNumberToolTip";
 import useFetch from "../../components/custom-hooks";
 import {Product} from "../../shared/types/product.type";
-
-interface IMenuPageProps {
-    updateBasketCount: (productId: string, newCount: number) => void;
-}
+// import { useDispatch } from "react-redux";
+// import {updateProductCount} from "../../redux/slicers/basketSlice";
 
 
-
-const MenuPage = ({updateBasketCount}: IMenuPageProps) => {
+const MenuPage = () => {
     const [activeButton, setActiveButton] = useState <string>('Dessert');
     const [visibleCountCards, setVisibleCountCards] = useState<number>(6);
 
     const url = `https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals?category=${activeButton}`;
     const { data: meals = [], loading, error } = useFetch<Product>({url});
+
+    // const dispatch = useDispatch();
+    //
+    // const updateBasketCount = (productId: string, newCount: number) => {
+    //     dispatch(updateProductCount({ productId, count: newCount }));
+    // };
 
     const handleSeeMoreButton = () => {
         setVisibleCountCards((prevState) => prevState + 6)
@@ -76,7 +79,6 @@ const MenuPage = ({updateBasketCount}: IMenuPageProps) => {
                         <FilteredProductList
                             meals = {meals}
                             visibleCount = {visibleCountCards}
-                            updateBasketCount = {updateBasketCount}
                         />
                     </div>
 

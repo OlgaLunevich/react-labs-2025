@@ -6,10 +6,9 @@ import {Product} from "../../shared/types/product.type.js";
 interface IFilteredProductListProps {
     meals: Product[],
     visibleCount: number,
-    updateBasketCount: (productId: string, newCount: number) => void;
 }
 
-const FilteredProductList = ({ meals, visibleCount, updateBasketCount }: IFilteredProductListProps) => {
+const FilteredProductList = ({ meals, visibleCount}: IFilteredProductListProps) => {
     return (
         <>
             <div className='productsGridContainer'>
@@ -23,7 +22,6 @@ const FilteredProductList = ({ meals, visibleCount, updateBasketCount }: IFilter
                             price: meal.price,
                             instructions: meal.instructions || "The instruction is not available",
                         }}
-                        updateBasketCount={updateBasketCount}
                     />
                 ))}
             </div>

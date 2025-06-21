@@ -1,14 +1,14 @@
 import './header.css';
 import React, { useState} from 'react';
 import {useNavigate} from "react-router-dom";
+import {selectTotalCount} from "../../redux/slicers/basketSlice";
+import {useSelector} from "react-redux";
 
-interface IHeaderProps {
-    basketCount: number;
-}
 
-const Header = ({basketCount}: IHeaderProps) => {
+const Header = () => {
     const [activeButton, setActiveButton] = useState<string>('Home');
     const navigate = useNavigate();
+    const basketCount = useSelector(selectTotalCount);
 
     const handleButtonClick = (buttonName: string, route: string) => {
         setActiveButton(buttonName);
