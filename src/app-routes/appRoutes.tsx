@@ -18,7 +18,11 @@ const AppRoutes= () => {
                     </ProtectedRoute>
                 } />
                 <Route path='Login_page'  element={<LoginPage/>} />
-                <Route path='OrderPage' element={<OrderPage/>} />
+                <Route path='OrderPage'  element={
+                    <ProtectedRoute>
+                        <OrderPage />
+                    </ProtectedRoute>
+                } />
             </Route>
         </Routes>
     );
