@@ -27,7 +27,7 @@ const authSlice = createSlice({
             state.loading = false;
         },
         setAuthLoading(state, action: PayloadAction<boolean>) {
-            state.loading = action.payload; // <-- контроль извне
+            state.loading = action.payload;
         }
     }
 });

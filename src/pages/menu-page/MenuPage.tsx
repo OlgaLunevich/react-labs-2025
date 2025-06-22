@@ -16,12 +16,6 @@ const MenuPage = () => {
     const url = `https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals?category=${activeButton}`;
     const { data: meals = [], loading, error } = useFetch<Product>({url});
 
-    // const dispatch = useDispatch();
-    //
-    // const updateBasketCount = (productId: string, newCount: number) => {
-    //     dispatch(updateProductCount({ productId, count: newCount }));
-    // };
-
     const handleSeeMoreButton = () => {
         setVisibleCountCards((prevState) => prevState + 6)
     };

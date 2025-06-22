@@ -52,6 +52,9 @@ const LoginPage = () => {
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             console.log("User Logged in", userCredential.user);
+            // UID пользователя в Redux
+            dispatch(login(userCredential.user.uid));
+
         } catch (error) {
             if (error instanceof FirebaseError) {
                 setError({ general: error.message });
@@ -61,14 +64,15 @@ const LoginPage = () => {
                     try {
                         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                         const uid = userCredential.user.uid;
-
                         console.log('New user created', uid);
-
                         await setDoc(doc(db, 'users', uid), {
                             email: email,
                             createdAt: new Date(),
                         });
-                        dispatch(login(userCredential.user.email!));
+                        // dispatch(login(userCredential.user.email!));
+
+                        // UID пользователя в Redux
+                        dispatch(login(uid));
                     } catch (createError) {
                         const err = createError as FirebaseError;
                         console.log("Error creating user:", err);
@@ -85,7 +89,6 @@ const LoginPage = () => {
         }
     };
 
-
     const handleLogoutButton = async () => {
         try {
             await signOut();
@@ -98,8 +101,7 @@ const LoginPage = () => {
             console.log("Error during logout:", error);
         }
     };
-
-
+    // console.log("Redux userId:", userId);
 
     return (
         <>
@@ -172,32 +174,3 @@ const LoginPage = () => {
 };
 export default LoginPage;
 
-
-
-// const [currentUser, setCurrentUser] = useState<User|null>(null);
-
-// useEffect(() => {
-//     const unsubscribe = onAuthStateChanged(auth, (user) => {
-//         setCurrentUser(user);
-//     });
-//     return () => unsubscribe();
-// }, []);
-
-
-// const handleLogoutButton = async () => {
-//     setActiveButton('Logout');
-//     setEmail('');
-//     setPassword('');
-//     setError(null);
-//     console.log("Form cleaned");
-//     console.log({ name: '', password: '' });
-//
-//     try {
-//         await signOut();
-//         console.log("User logged out");
-//     }
-//     catch (error) {
-//         console.log("Something wrong during log out... error: ",error);
-//     }
-//
-// };

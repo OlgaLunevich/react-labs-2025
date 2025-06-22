@@ -13,7 +13,7 @@ const ProtectedRoute= ({children} : IProtectedRouteProps) => {
     const loading = useSelector((state: RootState) => state.auth.loading);
 
     if(loading) {
-        return <div style={{display: "flex", justifyContent: "center", width: "100%", fontSize: "30px"}}>Loading...</div>;
+        return <div className="pleaseLogin">Loading...</div>;
     }
     if(!user) {
         // return <Navigate to="/Login_page" replace />;

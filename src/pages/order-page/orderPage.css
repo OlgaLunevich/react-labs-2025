@@ -1,0 +1,105 @@
+main{
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    background-image: url(../../assets/background-images-shapes/BG_Shape_Content.svg);
+    background-size: cover;
+
+    .mainContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 85%;
+
+        .browseMenuTitle{
+            display: flex;
+            justify-content: center;
+            color: #35B8BE;
+            font-weight: 400;
+            font-size: 50px;
+            line-height: 55px;
+            letter-spacing: 1.65px;
+            text-align: center;
+            width: 670px;
+            height: 159px;
+        }
+
+        .userOrderCard{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            align-items: center;
+
+
+            .orderItems{
+                display: flex;
+                flex-direction: column;
+
+            }
+        }
+
+        .deliveryData{
+            display: flex;
+            flex-direction: column;
+            height: 150px;
+            justify-content: space-evenly;
+
+
+            input{
+                width: 430px;
+                height: 45px;
+                border-radius: 6px;
+                border: 1px solid #DDDDDD;
+                background-color: #FAFAFA;
+                margin-left: 100px;
+                color: black;
+            }
+        }
+        .formErrorMessage{
+            color: red;
+            margin-top: 25px;
+        }
+
+        .orderButton{
+            color: #FFFFFF;
+            background-color: #35B8BE;
+            height: 52px;
+            cursor: pointer;
+            width: 147px;
+        }
+    }
+}
+
+.modalWindow{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+    .modalContent {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+
+        .modalButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #35B8BE;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 400;
+        }
+    }
+}
