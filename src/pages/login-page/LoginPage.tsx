@@ -101,7 +101,6 @@ const LoginPage = () => {
             console.log("Error during logout:", error);
         }
     };
-    // console.log("Redux userId:", userId);
 
     return (
         <>
