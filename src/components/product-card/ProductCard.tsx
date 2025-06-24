@@ -2,7 +2,13 @@ import React, {ChangeEvent} from 'react';
 import './productCard.css';
 import {Product} from "../../shared/types/product.type";
 import {useDispatch, useSelector} from 'react-redux';
-import {selectBasketMap,  selectInputMap, updateProductCount, removeProduct, setInputValue} from "../../redux/slicers/basketSlice";
+import {
+    selectBasketMap,
+    selectInputMap,
+    updateProductCount,
+    removeProduct,
+    setInputValue
+} from "../../redux/slicers/basketSlice";
 
 
 interface IProductCardProps {
@@ -68,3 +74,4 @@ const ProductCard: React.FC<IProductCardProps> = ({product}: IProductCardProps) 
 };
 
 export default ProductCard;
+

@@ -36,18 +36,18 @@ const basketSlice = createSlice({
             delete state.basketMap[action.payload];
             delete state.inputMap[action.payload];
         },
-        // for future
-        // clearBasket: (state) => {
-        //     state.basketMap = {};
-        //     state.inputMap = {};
-        // },
+
+        clearBasket: (state) => {
+            state.basketMap = {};
+            state.inputMap = {};
+        },
     },
 });
 
 export const {
     updateProductCount,
     removeProduct,
-    //clearBasket,
+    clearBasket,
     setInputValue
 } = basketSlice.actions;
 

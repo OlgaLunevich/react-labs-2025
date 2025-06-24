@@ -22,8 +22,6 @@
             line-height: 55px;
             letter-spacing: 1.65px;
             horiz-align: center;
-
-
         }
 
         .loginPageForm{
@@ -61,7 +59,6 @@
                     margin-left: 50px;
                     color: #000000;
                 }
-
             }
 
             .loginPageButtons{
@@ -87,9 +84,7 @@
                     border: 1px solid transparent;
 
                 }
-
             }
-
         }
     }
 }

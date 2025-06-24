@@ -46,3 +46,4 @@ const useFetch = <T = unknown>({url, trigger = true}: IUseFetchProps) => {
 
 export default useFetch;
 
+
