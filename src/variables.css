@@ -1,4 +1,11 @@
 :root {
-    font-family: Inter, sans-serif;
+    --font-family: Inter, sans-serif;
     --blueText: #28224B;
+    --background: #FFFFFF;
+    --textColor: #121212;
+}
+
+[data-theme="dark"] {
+    --background: #121212;
+    --textColor: #FFFFFF;
 }
