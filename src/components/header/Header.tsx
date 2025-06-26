@@ -3,6 +3,8 @@ import React, { useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {selectTotalCount} from "../../redux/slicers/basketSlice";
 import {useSelector} from "react-redux";
+import ThemeSwitcher from "../theme-switcher/ThemeSwitcher";
+
 
 
  const Header = () => {
@@ -20,6 +22,7 @@ import {useSelector} from "react-redux";
             <div className='headerContainer'>
                 <div className='logo'>
                     <img src='src/assets/logo.svg' alt='logo' />
+                    <ThemeSwitcher/>
                 </div>
                 <div className='navBar'>
                     <div className='navButtons'>

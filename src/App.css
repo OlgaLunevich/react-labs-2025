@@ -6,6 +6,8 @@ body{
   width: 100vw;
   flex-direction: column;
   font-weight: 400;
+  background-color: var(--background);
+  color: var(--textColor);
 
   button {
     border-radius: 6px;
