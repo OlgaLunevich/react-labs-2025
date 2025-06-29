@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {RootState} from "../store";
 
-interface BasketState {
+export interface BasketState {
     basketMap: Record<string,number>,
     inputMap: Record<string,string>
 }
