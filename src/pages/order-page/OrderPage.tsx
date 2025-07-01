@@ -4,7 +4,6 @@ import {useBasketProducts} from "../../components/useBasketProducts";
 import OrderProductCard from "../../components/order-product-card/OrderProductCard";
 import { useSelector } from "react-redux";
 import {RootState} from "../../redux/store";
-// import placeOrder from "";
 import { useDispatch } from "react-redux";
 import {clearBasket} from "../../redux/slicers/basketSlice";
 import { placeOrder } from "../../redux/slicers/orderSlice";
