@@ -1,6 +1,7 @@
 @import 'variables.css';
 
 body{
+  font-family: var(--font-family);
   margin: 0;
   display: flex;
   width: 100vw;
