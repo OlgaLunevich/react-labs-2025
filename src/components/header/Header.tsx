@@ -25,8 +25,8 @@ const Header = () => {
          if (isAuthenticated) {
              dispatch(logout());
              dispatch(clearBasket());
-             setActiveButton('Login');  // можно сбросить активную кнопку
-             navigate('/');             // возвращаем на главную после logout
+             setActiveButton('Login');
+             navigate('/');
          } else {
              setActiveButton('Login');
              navigate('/Login_page');

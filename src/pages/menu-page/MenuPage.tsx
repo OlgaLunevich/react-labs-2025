@@ -13,9 +13,10 @@ const MenuPage = () => {
     const [activeButton, setActiveButton] = useState <string>('Dessert');
     const [visibleCountCards, setVisibleCountCards] = useState<number>(6);
 
-    const url = `https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals?category=${activeButton}`;
-    const { data: meals = [], loading, error } = useFetch<Product>({url});
+    const apiMealsUrl = import.meta.env.VITE_API_MEALS_URL;
+    const url = `${apiMealsUrl}?category=${activeButton}`;
 
+    const { data: meals = [], loading, error } = useFetch<Product>({url});
     const handleSeeMoreButton = () => {
         setVisibleCountCards((prevState) => prevState + 6)
     };

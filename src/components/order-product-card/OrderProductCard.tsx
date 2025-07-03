@@ -67,11 +67,3 @@ const OrderProductCard: React.FC<IOrderProductCard> = ({product}: IOrderProductC
 
 export default OrderProductCard;
 
-
-//Mocks
-// const handleUpdateCount = () => {
-//     const countToSet = parseInt(inputValue, 10);
-//     if (!isNaN(countToSet)) {
-//         dispatch(updateProductCount({ productId: product.id, count: countToSet }));
-//     }
-// };

@@ -32,7 +32,7 @@ export const HomeTitle = styled.div`
     font-weight: 400;
     line-height: 60px;
     letter-spacing: 1.8px;
-    width: 590px;
+    width: 600px;
     height: 180px;
     white-space: normal;
     word-break: normal;

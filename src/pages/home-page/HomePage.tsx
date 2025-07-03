@@ -23,7 +23,7 @@ const HomePage: FC = () => {
                 <HomeInfoBlock>
                     <HomeTitle>
                         Beautiful food & takeaway,&nbsp;
-                        <HomeHighlightedText>delivered&nbsp;</HomeHighlightedText>
+                        <HomeHighlightedText>delivered</HomeHighlightedText>
                         to your door.
                     </HomeTitle>
                     <HomeDescription>

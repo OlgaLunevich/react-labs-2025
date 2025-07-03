@@ -104,7 +104,7 @@ const OrderPage = () => {
                     <div className="modalContent">
                         <h3>Order confirmed!</h3>
                         <p>
-                            Full price {totalPrice}$ <br/>
+                            Full price {(totalPrice).toFixed(2)}$ <br/>
                             Delivery address: {street}, {house}.
                         </p>
                         <button className="modalButton" onClick={closeModal}>OK</button>

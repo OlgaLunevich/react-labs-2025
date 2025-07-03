@@ -21,7 +21,6 @@ type ILoginFormButtonType = 'Login' | 'Cancel' | 'Logout';
 const LoginPage = () => {
     const dispatch = useDispatch();
     const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
-    //const user = useSelector((state: RootState) => state.auth.user);
 
     const [activeButton, setActiveButton] = useState<ILoginFormButtonType>('Login');
     const [email, setEmail] = useState<string>('');
@@ -69,9 +68,7 @@ const LoginPage = () => {
                             email: email,
                             createdAt: new Date(),
                         });
-                        // dispatch(login(userCredential.user.email!));
 
-                        // UID пользователя в Redux
                         dispatch(login(uid));
                     } catch (createError) {
                         const err = createError as FirebaseError;
