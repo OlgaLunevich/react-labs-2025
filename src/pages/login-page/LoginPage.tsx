@@ -101,70 +101,71 @@ const LoginPage = () => {
 
     return (
         <>
-           <main className="mainLoginPage">
-               <div className="loginPageContainer">
-                   <div className="loginPageFormTitle">Log in</div>
-                   <form className="loginPageForm" onSubmit={handleSubmitForm}>
-                       <div className="loginFormRow">
-                           <label>Email
-                               <input style={{marginLeft: "81px"}}
-                                      type="email"
-                                      autoComplete="email"
-                                      placeholder="еmail"
-                                      value={email}
-                                      onChange={(e) => setEmail(e.target.value)}
-                               />
-                           </label>
-                           {error?.email && <div className="error-message">{error.email}</div>}
-                       </div>
-                       <div className="loginFormRow">
-                           <label>Password
-                               <input type="password"
-                                      placeholder="••••••••••••••••"
-                                      autoComplete="current-password"
-                                      value={password}
-                                      onChange={(e) => setPassword(e.target.value)}
-                               />
-                           </label>
-                           {error?.password && <div className="error-message">{error.password}</div>}
-                       </div>
-                       <div className="loginPageButtons">
-                           {!isAuthenticated ?(
-                               <>
-                                   <button
-                                       type='submit'
-                                       disabled={!email || !password}
-                                       onClick={() => handleButtonClick('Login')}
-                                       className={activeButton === 'Login' ? 'active' : ''}
-                                   >
-                                       Login
-                                   </button>
-                                   <button
-                                       type="button"
-                                       onClick={() => {
-                                           setEmail('');
-                                           setPassword('');
-                                           setError(null);
-                                           setActiveButton('Cancel');
-                                       }}
-                                       className={activeButton === 'Cancel' ? 'active' : ''}
-                                   >
-                                       Cancel
-                                   </button>
-                               </>
-                           ) : (
-                               <button
-                                   type="button"
-                                   onClick={() => handleLogoutButton()}
-                                   className={activeButton === 'Logout' ? 'active' : ''}
-                               >
-                                   Logout
-                               </button>
-                           )}
-                       </div>
-                   </form>
-               </div>
-           </main>
+            <main className="mainLoginPage">
+                <div className="backgroundImageContainer"></div>
+                <div className="loginPageContainer">
+                    <div className="loginPageFormTitle">Log in</div>
+                    <form className="loginPageForm" onSubmit={handleSubmitForm}>
+                        <div className="loginFormRow">
+                            <label>Email
+                                <input style={{marginLeft: "81px"}}
+                                       type="email"
+                                       autoComplete="email"
+                                       placeholder="еmail"
+                                       value={email}
+                                       onChange={(e) => setEmail(e.target.value)}
+                                />
+                            </label>
+                            {error?.email && <div className="error-message">{error.email}</div>}
+                        </div>
+                        <div className="loginFormRow">
+                            <label>Password
+                                <input type="password"
+                                       placeholder="••••••••••••••••"
+                                       autoComplete="current-password"
+                                       value={password}
+                                       onChange={(e) => setPassword(e.target.value)}
+                                />
+                            </label>
+                            {error?.password && <div className="error-message">{error.password}</div>}
+                        </div>
+                        <div className="loginPageButtons">
+                            {!isAuthenticated ? (
+                                <>
+                                    <button
+                                        type='submit'
+                                        disabled={!email || !password}
+                                        onClick={() => handleButtonClick('Login')}
+                                        className={activeButton === 'Login' ? 'active' : ''}
+                                    >
+                                        Login
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            setEmail('');
+                                            setPassword('');
+                                            setError(null);
+                                            setActiveButton('Cancel');
+                                        }}
+                                        className={activeButton === 'Cancel' ? 'active' : ''}
+                                    >
+                                        Cancel
+                                    </button>
+                                </>
+                            ) : (
+                                <button
+                                    type="button"
+                                    onClick={() => handleLogoutButton()}
+                                    className={activeButton === 'Logout' ? 'active' : ''}
+                                >
+                                    Logout
+                                </button>
+                            )}
+                        </div>
+                    </form>
+                </div>
+            </main>
         </>
     );
 };

@@ -9,6 +9,7 @@ import {Product} from "../../shared/types/product.type";
 // import {updateProductCount} from "../../redux/slicers/basketSlice";
 
 
+
 const MenuPage = () => {
     const [activeButton, setActiveButton] = useState <string>('Dessert');
     const [visibleCountCards, setVisibleCountCards] = useState<number>(6);
@@ -29,6 +30,7 @@ const MenuPage = () => {
     return (
         <>
             <main>
+                <div className="backgroundImageContainer"></div>
                 <div className='mainContainer'>
                     <div className='browseInfoContainer'>
                         <div className='browseMenuTitle'>
@@ -37,43 +39,43 @@ const MenuPage = () => {
                         <div className='browseMenuDescription'>
                             Use our menu to place an order online, or
                             <PhoneNumber>
-                                <PhoneNumberToolTip />
+                                <PhoneNumberToolTip/>
                             </PhoneNumber>
                             our store to place a pickup order. Fast and fresh food.
                         </div>
                         <div className='browseMenuButtons'>
                             <div>
                                 <button
-                                        onClick={() => handleButtonClick('Dessert')}
-                                        className={activeButton === 'Dessert' ? 'active' : ''}
+                                    onClick={() => handleButtonClick('Dessert')}
+                                    className={activeButton === 'Dessert' ? 'active' : ''}
                                 >
                                     Dessert
                                 </button>
                             </div>
                             <div>
                                 <button
-                                        onClick={() => handleButtonClick('Dinner')}
-                                        className={activeButton === 'Dinner' ? 'active' : ''}
+                                    onClick={() => handleButtonClick('Dinner')}
+                                    className={activeButton === 'Dinner' ? 'active' : ''}
                                 >
                                     Dinner
                                 </button>
                             </div>
                             <div>
                                 <button
-                                        onClick={() => handleButtonClick('Breakfast')}
-                                        className={activeButton === 'Breakfast' ? 'active' : ''}
+                                    onClick={() => handleButtonClick('Breakfast')}
+                                    className={activeButton === 'Breakfast' ? 'active' : ''}
                                 >
                                     Breakfast
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <div >
+                    <div>
                         {loading && <p>Please, wait! Loading...</p>}
                         {error && <p>Error: {error}</p>}
                         <FilteredProductList
-                            meals = {meals}
-                            visibleCount = {visibleCountCards}
+                            meals={meals}
+                            visibleCount={visibleCountCards}
                         />
                     </div>
 

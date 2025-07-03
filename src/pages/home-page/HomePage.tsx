@@ -9,16 +9,24 @@ import {
     HomeOrderButton,
     HomeReviewSection,
     HomeReviewStatistic,
-    HomeImgSection
+    HomeImgSection,
+    HomeBackgroundLayer,
+    HomeBgImage
 } from './HomePage.styles';
 
 import starImg from '../../assets/star_Trustpilot.svg';
 import trustpilotImg from '../../assets/Trustpilot.svg';
 import homeImage from '../../assets/home-Page-image.svg';
 
+import bgShape from '../../assets/background-images-shapes/BG-Shape-Home-page.svg';
+
 const HomePage: FC = () => {
     return (
         <HomeMain>
+            <HomeBackgroundLayer />
+            <HomeBgImage>
+                <img src={bgShape} alt="background" />
+            </HomeBgImage>
             <HomeMainContainer>
                 <HomeInfoBlock>
                     <HomeTitle>

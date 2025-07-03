@@ -72,6 +72,7 @@ const OrderPage = () => {
     return (
         <>
             <main>
+                <div className="backgroundImageContainer"></div>
                 <div className='mainContainer'>
                     <div className='browseMenuTitle'>
                         Finish your order

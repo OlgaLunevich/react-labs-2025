@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 const Footer= () => {
     return(
         <footer>
+            <div className='footer-background'></div>
             <div className='footerContainer'>
                 <div className='infoBlock'>
                     <div className='infoLogo'>
