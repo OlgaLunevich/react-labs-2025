@@ -13,9 +13,7 @@ const AppRoutes= () => {
             <Route element={<Layout/>} path='/'>
                 <Route index  element={<HomePage/>} />
                 <Route path='Menu_Page'  element={
-                    <ProtectedRoute>
                         <MenuPage />
-                    </ProtectedRoute>
                 } />
                 <Route path='Login_page'  element={<LoginPage/>} />
                 <Route path='OrderPage'  element={
