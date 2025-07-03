@@ -48,7 +48,7 @@ const OrderProductCard: React.FC<IOrderProductCard> = ({product}: IOrderProductC
                     <div className="orderProductName">{product.meal}</div>
                 </div>
                 <div className="OrderProductCount">
-                    <div className="price">$ {product.price * count} </div>
+                    <div className="price">$ {(product.price * count).toFixed(2)} </div>
                     <div className="orderProductCardButtons">
                         <input
                             className="desiredCount"
