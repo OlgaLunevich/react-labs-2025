@@ -10,10 +10,12 @@ body{
   background-color: var(--background);
   color: var(--textColor);
   overflow-x: hidden;
+  /*transition: filter 0.3s ease;*/
 
   button {
     border-radius: 6px;
     border: 0;
     width: 147px;
   }
+
 }

@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 import {selectTotalCount} from "../../redux/slicers/basketSlice";
 import {useSelector} from "react-redux";
 import ThemeSwitcher from "../theme-switcher/ThemeSwitcher";
-
+import { Link } from 'react-router-dom';
 
 
  const Header = () => {
@@ -21,7 +21,9 @@ import ThemeSwitcher from "../theme-switcher/ThemeSwitcher";
         <header>
             <div className='headerContainer'>
                 <div className='logo'>
-                    <img src='src/assets/logo.svg' alt='logo' />
+                    <Link to="/">
+                        <img src="src/assets/logo.svg" alt="logo" />
+                    </Link>
                     <ThemeSwitcher/>
                 </div>
                 <div className='navBar'>

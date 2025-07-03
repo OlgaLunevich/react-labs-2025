@@ -10,3 +10,7 @@
     --background: #121212;
     --textColor: #FFFFFF;
 }
+
+/*[data-theme="dark"] img {*/
+/*    filter: invert(1) hue-rotate(180deg);*/
+/*}*/
