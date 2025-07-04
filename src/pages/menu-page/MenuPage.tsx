@@ -5,8 +5,6 @@ import FilteredProductList from "../../components/filtered-product-list/Filtered
 import PhoneNumberToolTip from "../../components/tooltips/phone-number-tooltip/PhoneNumberToolTip";
 import useFetch from "../../components/custom-hooks";
 import {Product} from "../../shared/types/product.type";
-// import { useDispatch } from "react-redux";
-// import {updateProductCount} from "../../redux/slicers/basketSlice";
 
 
 

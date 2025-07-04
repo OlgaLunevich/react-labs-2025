@@ -88,7 +88,7 @@ const OrderPage = () => {
                         </div>
                     </div>
                     <div className='deliveryData'>
-                        <label>Street
+                        <label>Street&nbsp;
                             <input type="text" value={street} onChange={e => setStreet(e.target.value)}/>
                         </label>
                         <label>House

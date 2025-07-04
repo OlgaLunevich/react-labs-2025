@@ -17,7 +17,6 @@ interface ILoginFormErrorsProps {
 }
 
 type ILoginFormButtonType = 'Login' | 'Cancel' | 'Logout';
-
 const LoginPage = () => {
     const dispatch = useDispatch();
     const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
@@ -51,7 +50,6 @@ const LoginPage = () => {
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             console.log("User Logged in", userCredential.user);
-            // UID пользователя в Redux
             dispatch(login(userCredential.user.uid));
 
         } catch (error) {
@@ -68,7 +66,6 @@ const LoginPage = () => {
                             email: email,
                             createdAt: new Date(),
                         });
-
                         dispatch(login(uid));
                     } catch (createError) {
                         const err = createError as FirebaseError;
@@ -170,4 +167,5 @@ const LoginPage = () => {
     );
 };
 export default LoginPage;
+
 

@@ -1,10 +1,4 @@
 main {
-    /*display: flex;*/
-    /*width: 100%;*/
-    /*justify-content: center;*/
-    /*background-image: url(../../assets/background-images-shapes/BG_Shape_Content.svg);*/
-    /*background-size: cover;*/
-
     position: relative;
     display: flex;
     justify-content: center;

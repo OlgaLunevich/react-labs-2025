@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import bgShape from '../../assets/background-images-shapes/BG-Shape-Home-page.svg';
-
 
 export const HomeMain = styled.main`
     position: relative;

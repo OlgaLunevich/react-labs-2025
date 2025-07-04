@@ -60,6 +60,7 @@ main{
             justify-content: space-evenly;
 
 
+
             input{
                 width: 430px;
                 height: 45px;
@@ -68,6 +69,8 @@ main{
                 background-color: #FAFAFA;
                 margin-left: 100px;
                 color: black;
+                padding-left: 20px;
+
             }
         }
         .formErrorMessage{

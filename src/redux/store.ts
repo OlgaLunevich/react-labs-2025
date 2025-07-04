@@ -3,7 +3,6 @@ import basketReducer from "./slicers/basketSlice";
 import authReducer from "./slicers/authSlice";
 import orderReducer from "./slicers/orderSlice";
 
-// for saving a data in basket when the page was reloaded
 
 const loadBasketState = () => {
     try {
