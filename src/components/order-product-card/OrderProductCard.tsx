@@ -48,7 +48,7 @@ const OrderProductCard: React.FC<IOrderProductCard> = ({product}: IOrderProductC
                     <div className="orderProductName">{product.meal}</div>
                 </div>
                 <div className="OrderProductCount">
-                    <div className="price">$ {product.price * count} </div>
+                    <div className="price">$ {(product.price * count).toFixed(2)} </div>
                     <div className="orderProductCardButtons">
                         <input
                             className="desiredCount"
@@ -67,11 +67,3 @@ const OrderProductCard: React.FC<IOrderProductCard> = ({product}: IOrderProductC
 
 export default OrderProductCard;
 
-
-//Mocks
-// const handleUpdateCount = () => {
-//     const countToSet = parseInt(inputValue, 10);
-//     if (!isNaN(countToSet)) {
-//         dispatch(updateProductCount({ productId: product.id, count: countToSet }));
-//     }
-// };

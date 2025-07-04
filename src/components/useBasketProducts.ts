@@ -8,8 +8,10 @@ export const useBasketProducts = () => {
     const productIds = Object.keys(basketMap);
     const trigger = true;
 
+    const apiMealsUrl = import.meta.env.VITE_API_MEALS_URL;
+
     const { data, loading, error } = useFetch<Product>({
-        url: `https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals`,
+        url: apiMealsUrl,
         trigger,
     });
 
@@ -22,6 +24,5 @@ export const useBasketProducts = () => {
 
     return { products: filteredProducts, basketMap, loading, error };
 };
-
 
 export default useBasketProducts;

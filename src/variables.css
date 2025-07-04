@@ -1,11 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 :root {
-    --font-family: Inter, sans-serif;
+    --font-family: 'Inter', sans-serif;
     --blueText: #28224B;
     --background: #FFFFFF;
     --textColor: #121212;
+    --footer-bg-color: #F5FBFC;
+    --home-bg-filter: none;
+    --home-bg-overlay: transparent;
+    --menu-bg-filter: none;
+    --info-title-footer: #08090A;
+
+
 }
 
 [data-theme="dark"] {
-    --background: #121212;
+    --background: #1A1A1A;
     --textColor: #FFFFFF;
+    --footer-bg-filter: invert(1) hue-rotate(180deg) opacity(0.3);
+    --footer-bg-color: #1A1A1A;
+    --home-bg-filter: invert(1) hue-rotate(180deg);
+    --home-bg-overlay: rgba(26, 26, 26, 0.6);
+    --menu-bg-filter: invert(1) hue-rotate(180deg)opacity(0.9);
+    --form-filter: invert(0.8)  hue-rotate(180deg) ;
+    --info-title-footer: #FFFFFF;
 }
+
+/*[data-theme="dark"] img {*/
+/*    filter: invert(1) hue-rotate(180deg);*/
+/*}*/

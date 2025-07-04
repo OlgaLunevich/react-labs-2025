@@ -12,15 +12,26 @@ const ThemeContext = createContext<IThemeContextProps>({
     toggleTheme : () => {},
 });
 
+const LOCAL_STORAGE_KEY = 'app-theme';
+
 const AppProvider : React.FC<{ children: ReactNode }> = ({children}) => {
     const getSystemTheme = (): Theme => {
         return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     };
-    const [theme, setTheme] = useState<Theme>(() => getSystemTheme());
+
+    const getInitialTheme = (): Theme => {
+        const storedTheme = localStorage.getItem(LOCAL_STORAGE_KEY) as Theme | null;
+        if (storedTheme === 'light' || storedTheme === 'dark') {
+            return storedTheme;
+        }
+        return getSystemTheme();
+    };
+
+    const [theme, setTheme] = useState<Theme>(() => getInitialTheme());
 
     useEffect(() => {
-        const root = document.documentElement;
-        root.setAttribute('data-theme', theme);
+        localStorage.setItem(LOCAL_STORAGE_KEY, theme);
+        document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
 
     const toggleTheme = () => {
@@ -34,3 +45,12 @@ const AppProvider : React.FC<{ children: ReactNode }> = ({children}) => {
 }
 
 export { ThemeContext, AppProvider };
+
+
+
+//Mocks
+// const [theme, setTheme] = useState<Theme>(() => getSystemTheme());
+// useEffect(() => {
+//     const root = document.documentElement;
+//     root.setAttribute('data-theme', theme);
+// }, [theme]);

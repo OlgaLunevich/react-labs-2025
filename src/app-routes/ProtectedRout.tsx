@@ -1,8 +1,8 @@
-import React from 'react';
-// import {Navigate} from "react-router-dom";
+import React, {useState} from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import './portectedRoutemessage.css';
+import { useNavigate } from 'react-router-dom';
 
 interface IProtectedRouteProps {
     children: React.ReactNode;
@@ -11,20 +11,33 @@ interface IProtectedRouteProps {
 const ProtectedRoute= ({children} : IProtectedRouteProps) => {
     const user = useSelector((state: RootState) => state.auth.user);
     const loading = useSelector((state: RootState) => state.auth.loading);
+    const [showModal, setShowModal] = useState(true);
+    const navigate = useNavigate();
+
+    const closeModal = () => {
+        setShowModal(false);
+        navigate('/Login_page');
+    };
 
     if(loading) {
         return <div className="pleaseLogin">Loading...</div>;
     }
     if(!user) {
-        // return <Navigate to="/Login_page" replace />;
-        // In this case necessary to create a way
-        // for changing state of active button (Menu to Login) for Header during redirection.
-        // return <div style={{display: "flex", justifyContent: "center", width: "100%", fontSize: "30px"}}>
-        return <div className="pleaseLogin">
-            Please, go to the login page.
-        </div>;
+        return (
+            <>
+                {showModal && (
+                    <div className="modalWindow">
+                        <div className="modalContent">
+                            <h3>You are not logged</h3>
+                            <p>Please, for making purchases login.</p>
+                            <button className="modalButton" onClick={closeModal}>OK</button>
+                        </div>
+                    </div>
+                )}
+            </>
+        );
     }
-    return(children);
+    return <>{children}</>;
 };
 
 export default ProtectedRoute;

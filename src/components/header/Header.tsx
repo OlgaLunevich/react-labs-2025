@@ -1,34 +1,52 @@
 import './header.css';
 import React, { useState} from 'react';
 import {useNavigate} from "react-router-dom";
-import {selectTotalCount} from "../../redux/slicers/basketSlice";
-import {useSelector} from "react-redux";
+import {selectTotalCount, clearBasket} from "../../redux/slicers/basketSlice";
+import {useSelector, useDispatch} from "react-redux";
 import ThemeSwitcher from "../theme-switcher/ThemeSwitcher";
+import { Link } from 'react-router-dom';
+import {logout} from "../../redux/slicers/authSlice";
 
 
 
- const Header = () => {
+const Header = () => {
     const [activeButton, setActiveButton] = useState<string>('Home');
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const basketCount = useSelector(selectTotalCount);
+    const isAuthenticated = useSelector((state: any) => state.auth.isAuthenticated);
 
     const handleButtonClick = (buttonName: string, route: string) => {
         setActiveButton(buttonName);
         navigate(route);
     };
 
+     const handleAuthButtonClick = () => {
+         if (isAuthenticated) {
+             dispatch(logout());
+             dispatch(clearBasket());
+             setActiveButton('Login');
+             navigate('/');
+         } else {
+             setActiveButton('Login');
+             navigate('/Login_page');
+         }
+     };
+
     return (
         <header>
             <div className='headerContainer'>
                 <div className='logo'>
-                    <img src='src/assets/logo.svg' alt='logo' />
+                    <Link to="/">
+                        <img src="src/assets/logo.svg" alt="logo" />
+                    </Link>
                     <ThemeSwitcher/>
                 </div>
                 <div className='navBar'>
                     <div className='navButtons'>
                         <div>
                             <button
-                                onClick={() => handleButtonClick('Home','/')}
+                                onClick={() => handleButtonClick('Home', '/')}
                                 className={activeButton === 'Home' ? 'active' : ''}
                             >
                                 Home
@@ -52,10 +70,10 @@ import ThemeSwitcher from "../theme-switcher/ThemeSwitcher";
                         </div>
                         <div>
                             <button
-                                onClick={() => handleButtonClick('Login','/Login_page')}
+                                onClick={handleAuthButtonClick}
                                 className={activeButton === 'Login' ? 'active' : ''}
                             >
-                                Login
+                                {isAuthenticated ? 'Logout' : 'Login'}
                             </button>
                         </div>
                     </div>

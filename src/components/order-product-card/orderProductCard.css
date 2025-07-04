@@ -13,12 +13,11 @@
         width: 1180px;
         background-color: #FFFFFF;
 
-
-
         .orderProductInfo{
             display: flex;
             flex-direction: row;
             align-items: center;
+            width: 70%;
 
             .orderProductPhoto{
                 width: 35%;
@@ -60,8 +59,10 @@
                     border-radius: 6px;
                     border: 1px solid #35B8BE26;
                     height: 43px;
-                    width:55px;
+                    width:35px;
                     text-align: center;
+                    padding-left: 18px;
+
                 }
 
                 .deleteFromOrderButton{

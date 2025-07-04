@@ -1,15 +1,19 @@
 import React from 'react';
 import './footer.css';
+import {Link} from "react-router-dom";
 
 
 const Footer= () => {
     return(
         <footer>
+            <div className='footer-background'></div>
             <div className='footerContainer'>
                 <div className='infoBlock'>
                     <div className='infoLogo'>
                         <div className='logo'>
-                            <img src='src/assets/logo.svg' alt='logo'/>
+                            <Link to="/" onClick={() => window.scrollTo(0, 0)}>
+                                <img src="src/assets/logo.svg" alt="logo" />
+                            </Link>
                         </div>
                         <div className='logoStatement'>
                             <div className='font16'>Takeaway & Delivery template</div>

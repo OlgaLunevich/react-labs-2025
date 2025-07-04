@@ -1,14 +1,44 @@
 import styled from 'styled-components';
-import bgShape from '../../assets/background-images-shapes/BG-Shape-Home-page.svg';
 
 export const HomeMain = styled.main`
+    position: relative;
     display: flex;
     width: 100vw;
     justify-content: center;
-    background-image: url("${bgShape}");
-    background-size: cover;
-    height: 820px;
     align-items: center;
+    height: 820px;
+    overflow: hidden;
+    background: var(--background);
+
+`;
+
+export const HomeBgImage = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: var(--home-bg-filter, none);
+        transition: filter 0.3s ease;
+    }
+`;
+
+export const HomeBackgroundLayer = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--home-bg-overlay, transparent);
+    z-index: 1;
+    pointer-events: none;
 `;
 
 export const HomeMainContainer = styled.div`
@@ -18,6 +48,7 @@ export const HomeMainContainer = styled.div`
     justify-content: space-between;
     height: 581px;
     width: 85%;
+    z-index: 2;
 `;
 
 export const HomeInfoBlock = styled.div`
@@ -32,7 +63,7 @@ export const HomeTitle = styled.div`
     font-weight: 400;
     line-height: 60px;
     letter-spacing: 1.8px;
-    width: 590px;
+    width: 600px;
     height: 180px;
     white-space: normal;
     word-break: normal;
@@ -71,6 +102,11 @@ export const HomeReviewSection = styled.div`
     justify-content: space-between;
     width: 282px;
     height: 57px;
+    
+    img{
+        filter: var(--home-bg-filter, none);
+        transition: filter 0.3s ease;
+    }    
 `;
 
 export const HomeReviewStatistic = styled.div`

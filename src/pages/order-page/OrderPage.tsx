@@ -72,6 +72,7 @@ const OrderPage = () => {
     return (
         <>
             <main>
+                <div className="backgroundImageContainer"></div>
                 <div className='mainContainer'>
                     <div className='browseMenuTitle'>
                         Finish your order
@@ -87,7 +88,7 @@ const OrderPage = () => {
                         </div>
                     </div>
                     <div className='deliveryData'>
-                        <label>Street
+                        <label>Street&nbsp;
                             <input type="text" value={street} onChange={e => setStreet(e.target.value)}/>
                         </label>
                         <label>House
@@ -104,7 +105,7 @@ const OrderPage = () => {
                     <div className="modalContent">
                         <h3>Order confirmed!</h3>
                         <p>
-                            Full price {totalPrice}$ <br/>
+                            Full price {(totalPrice).toFixed(2)}$ <br/>
                             Delivery address: {street}, {house}.
                         </p>
                         <button className="modalButton" onClick={closeModal}>OK</button>

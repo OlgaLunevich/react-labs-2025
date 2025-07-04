@@ -1,9 +1,22 @@
 .mainLoginPage{
+    position: relative;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    height: 800px;
+    width: 100%;
+    overflow: hidden;
+
+    .backgroundImageContainer {
+        position: absolute;
+        background-image: url(../../assets/background-images-shapes/BG_Shape_Content.svg);
+        background-size: cover;
+        top: -1px;
+        left: -1px;
+        width: calc(100% + 2px);
+        height: calc(100% + 2px);
+        filter: var(--menu-bg-filter);
+        z-index: 0;
+        pointer-events: none;
+    }
 
     .loginPageContainer{
         display: flex;
@@ -11,6 +24,8 @@
         align-items: center;
         height: 400px;
         width: 695px;
+        position: relative;
+        z-index: 1;
 
         .loginPageFormTitle{
             height: 110px;
@@ -35,8 +50,14 @@
             border: 1px solid #35B8BE26;
             border-radius: 4px;
 
+            filter: var(--form-filter, none);
+
             .error-message{
                 color: crimson;
+                margin-top: 5px;
+                margin-bottom: 10px;
+                font-size: 14px; /* чуть больше, чтобы было видно */
+                font-weight: 600;
             }
 
             .loginFormRow{

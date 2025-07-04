@@ -6,7 +6,8 @@ interface IValidateLoginFormProps {
 
 interface ILoginFormErrorsProps {
     email?: string,
-    password?: string
+    password?: string,
+    general?:string
 }
 
 const validateLoginForm = ({ email, password }: IValidateLoginFormProps) => {
