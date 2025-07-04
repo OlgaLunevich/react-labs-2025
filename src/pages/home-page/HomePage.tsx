@@ -1,4 +1,5 @@
 import React, {FC} from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
     HomeMain,
     HomeMainContainer,
@@ -17,10 +18,15 @@ import {
 import starImg from '../../assets/star_Trustpilot.svg';
 import trustpilotImg from '../../assets/Trustpilot.svg';
 import homeImage from '../../assets/home-Page-image.svg';
-
 import bgShape from '../../assets/background-images-shapes/BG-Shape-Home-page.svg';
 
+
+
 const HomePage: FC = () => {
+    const navigate = useNavigate();
+    const handleClick = () => {
+        navigate('OrderPage');
+    }
     return (
         <HomeMain>
             <HomeBackgroundLayer />
@@ -38,7 +44,9 @@ const HomePage: FC = () => {
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                     </HomeDescription>
                     <div>
-                        <HomeOrderButton>Place an Order</HomeOrderButton>
+                        <HomeOrderButton onClick={handleClick}>
+                            Place an Order
+                        </HomeOrderButton>
                     </div>
                     <HomeReviewSection>
                         <div>
